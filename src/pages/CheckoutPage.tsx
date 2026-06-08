@@ -165,11 +165,12 @@ export default function CheckoutPage() {
               </div>
               <div className="md:col-span-2 pt-4">
                 <button 
-                  className="w-full bg-gradient-to-r from-[#00658d] to-[#00a1e0] text-white py-4 rounded-full font-bold text-lg shadow-[0_8px_20px_rgba(0,101,141,0.4)] hover:shadow-[0_12px_25px_rgba(0,101,141,0.6)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ring-4 ring-transparent hover:ring-[#00a1e0]/30 flex items-center justify-center gap-2" 
+                  className="w-full bg-gradient-to-r from-[#00658d] to-[#00a1e0] text-white py-4 rounded-full font-bold text-lg shadow-[0_8px_20px_rgba(0,101,141,0.4)] hover:shadow-[0_12px_25px_rgba(0,101,141,0.6)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ring-4 ring-transparent hover:ring-[#00a1e0]/30 flex items-center justify-center gap-2 disabled:opacity-70 disabled:hover:translate-y-0 disabled:cursor-not-allowed" 
                   type="submit"
+                  disabled={isLoading}
                 >
-                  <span className="material-symbols-outlined">lock</span>
-                  Finalizar Cadastro
+                  <span className="material-symbols-outlined">{isLoading ? 'hourglass_empty' : 'lock'}</span>
+                  {isLoading ? 'Processando...' : 'Finalizar Cadastro'}
                 </button>
                 <div className="mt-6 text-center bg-blue-50 text-blue-800 p-4 rounded-xl border border-blue-100">
                   <p className="text-sm font-semibold mb-1">Aviso Importante sobre a Taxa</p>
