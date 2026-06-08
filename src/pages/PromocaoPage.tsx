@@ -10,7 +10,7 @@ export default function PromocaoPage() {
         {/* Subtle background glow */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
 
-        <div className="max-w-[1400px] w-full flex flex-col lg:flex-row items-center lg:justify-start gap-8 lg:gap-16 z-10 pt-10">
+        <div className="max-w-[1400px] w-full flex flex-col-reverse lg:flex-row items-center lg:justify-start gap-8 lg:gap-16 z-10 pt-10">
 
           {/* Left Column: Text & CTA */}
           <div className="flex flex-col items-start space-y-8 max-w-xl shrink-0 z-20">
