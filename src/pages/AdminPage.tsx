@@ -49,6 +49,25 @@ export default function AdminPage() {
     setExpandedRow(expandedRow === id ? null : id);
   };
 
+  const handleDelete = async (id: number) => {
+    if (window.confirm('Tem certeza que deseja excluir permanentemente este registro?')) {
+      try {
+        const { error } = await supabase
+          .from('testes_checkout')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+        
+        setData(data.filter(row => row.id !== id));
+        if (expandedRow === id) setExpandedRow(null);
+      } catch (error) {
+        console.error('Erro ao excluir registro:', error);
+        alert('Erro ao excluir registro. Tente novamente.');
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -196,6 +215,18 @@ export default function AdminPage() {
                               <div className="md:col-span-2 lg:col-span-1">
                                 <p className="text-caption text-secondary uppercase tracking-wider mb-1">Endereço Completo</p>
                                 <p className="text-body-md font-medium text-on-surface">{row.endereco || 'Não informado'}</p>
+                              </div>
+                              <div className="md:col-span-2 lg:col-span-3 flex justify-end mt-2 pt-4 border-t border-outline-variant">
+                                <button 
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDelete(row.id);
+                                  }}
+                                  className="flex items-center gap-2 bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white px-5 py-2 rounded-lg transition-all duration-300 font-bold text-sm border border-rose-100 hover:border-transparent shadow-sm"
+                                >
+                                  <span className="material-symbols-outlined text-[18px]">delete</span>
+                                  Excluir Dados
+                                </button>
                               </div>
                             </div>
                           </td>
